@@ -1,0 +1,12 @@
+
+# ------------------------------------------
+# zsh related files
+# ------------------------------------------
+.zcompdump
+.zsh_history
+.zsh_sessions
+
+# ------------------------------------------
+# karabiner-elements related files
+# ------------------------------------------
+config/karabiner/automatic_backups

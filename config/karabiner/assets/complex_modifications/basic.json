@@ -1,0 +1,76 @@
+{
+    "title": "basic",
+    "rules": [
+        {
+            "description": "(basic) cmd + o => ctrl + o",
+            "_comment": "IME 変換入力中の文字を半角英数に変換",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "o",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "o",
+                            "modifiers": [
+                                "left_control"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "(basic) cmd + space => ctrl + space",
+            "_comment": "英数かな切替",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "spacebar",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "spacebar",
+                            "modifiers": [
+                                "left_control"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "(basic) printscreen => cmd + shift + 2",
+            "_comment": "prtscで範囲指定してスクリーンショット（shottrに設定済みのホットキー）を呼び出す。",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "print_screen"
+                    },
+                    "to": [
+                        {
+                            "key_code": "2",
+                            "modifiers": [
+                                "command",
+                                "shift"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

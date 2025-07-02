@@ -1,0 +1,10 @@
+[user]
+	name = nishitani
+	email = kindberwindow@gmail.com
+[ghq]
+    user = nishitani
+    root = ~/repo
+[core]
+	editor = code --wait
+[http]
+	postBuffer = 524288000
