@@ -10,3 +10,9 @@
 # karabiner-elements related files
 # ------------------------------------------
 config/karabiner/automatic_backups
+
+
+# ------------------------------------------
+# macOS related files
+# ------------------------------------------
+.DS_Store
