@@ -17,6 +17,8 @@ fi
 
 brew install google-chrome
 
+brew install --cask visual-studio-code
+
 # ime(google ime のインストールに必要)
 softwareupdate --install-rosetta	
 brew install google-japanese-ime
@@ -47,3 +49,6 @@ brew install --cask dbeaver-community
 
 # git client
 brew install --cask fork
+
+# GitHub CLI
+brew install gh

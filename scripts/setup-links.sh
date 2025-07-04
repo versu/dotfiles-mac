@@ -7,7 +7,7 @@ mkdir -p \
   "$XDG_STATE_HOME" 
 
 # 除外したいディレクトリ名をここに追加
-EXCLUDE_DIRS=("raycast")
+EXCLUDE_DIRS=("raycast" "claude")
 
 for entry in "$REPO_DIR/config/"*; do
   name=$(basename "$entry")
@@ -24,3 +24,6 @@ for entry in "$REPO_DIR/config/"*; do
 done
 
 ln -sfv "$XDG_CONFIG_HOME/zsh/.zshenv" "$HOME/.zshenv"
+
+# Claude Code
+ln -sfv "$XDG_CONFIG_HOME/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
