@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eux
 
+# CUR_DIR: このスクリプトがあるディレクトリ
+# REPO DIR: リポジトリのルートディレクトリ
 export CUR_DIR REPO_DIR
 CUR_DIR="$(
   cd "$(dirname "$0")" || exit 1
