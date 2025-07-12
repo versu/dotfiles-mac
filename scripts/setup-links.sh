@@ -26,4 +26,5 @@ done
 ln -sfv "$XDG_CONFIG_HOME/zsh/.zshenv" "$HOME/.zshenv"
 
 # Claude Code
+mkdir -p "$HOME/.claude"
 ln -sfv "$XDG_CONFIG_HOME/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"

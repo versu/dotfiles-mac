@@ -1,2 +1,8 @@
 [tools]
 node = "latest"
+deno = "latest"
+go = "latest"
+fzf = "latest"
+aws-cli = "latest"
+pnpm = "latest"
+bun = "latest"

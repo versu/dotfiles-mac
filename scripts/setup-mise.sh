@@ -5,3 +5,5 @@ set -eux
 echo "Installing mise..."
 
 brew install mise
+
+mise install
