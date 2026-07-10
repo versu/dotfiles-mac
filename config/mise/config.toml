@@ -1,3 +1,9 @@
 [tools]
 node = "latest"
 powershell-core = "latest"
+deno = "latest"
+go = "latest"
+fzf = "latest"
+aws-cli = "latest"
+pnpm = "latest"
+bun = "latest"
