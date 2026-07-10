@@ -43,9 +43,15 @@ __zeno_atload() {
   bindkey '^r' zeno-history-selection
   # bindkey '^x' zeno-insert-snippet
   bindkey '^g' zeno-ghq-cd
+
+  # deno は deno.json が無いと cwd の tsconfig.json を設定として拾い、
+  # 非対応の compilerOptions を stderr に警告する。zinit のターボモードでは
+  # それがプロンプト描画後に流れ込み、表示が崩れる。出力を捨てて非同期実行する。
+  ( deno cache --quiet --unstable-byonm --no-lock --no-check -- "${ZENO_ROOT}/src/cli.ts" &> /dev/null &! )
 }
 
 export ZENO_HOME="$XDG_CONFIG_HOME/zeno"
+export ZENO_DISABLE_EXECUTE_CACHE_COMMAND=1
 zinit wait lucid light-mode for \
   atload'__zeno_atload' \
   @'yuki-yano/zeno.zsh'
