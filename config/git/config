@@ -11,6 +11,9 @@
 [credential "https://github.com"]
 	# 空指定でシステム設定の osxkeychain を打ち消し、gh のトークンのみを使う
 	helper =
-	# GUI アプリ (Obsidian 等) は launchd の既定 PATH で起動し gh を解決できないため補う
-	helper = !PATH=/opt/homebrew/bin:/usr/local/bin:$PATH gh auth git-credential
+	# gh auth git-credential はアクティブアカウントのトークンしか返さないため使わない。
+	# credential.username で指定したアカウントのトークンを gh auth token で明示的に取り出す。
+	# GUI アプリ (Obsidian 等) は launchd の既定 PATH で起動し gh を解決できないため PATH を補う。
+	# 末尾の sh -c ... -- は git が付与する操作名 (get/store/erase) を吸収するため。
+	helper = !sh -c 'PATH=/opt/homebrew/bin:/usr/local/bin:$PATH gh auth token -u $(git config --get credential.https://github.com.username) | sed s/^/password=/' --
 	username = versu
