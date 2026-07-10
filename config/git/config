@@ -8,3 +8,8 @@
 	editor = code --wait
 [http]
 	postBuffer = 524288000
+[credential "https://github.com"]
+	# 空指定でシステム設定の osxkeychain を打ち消し、gh のトークンのみを使う
+	helper =
+	helper = !gh auth git-credential
+	username = versu
