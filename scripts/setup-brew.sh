@@ -53,9 +53,6 @@ brew install --cask fork
 # Postman
 brew install --cask postman
 
-# GitHub CLI
-brew install gh
-
 # Java(plantuml のために必要)
 brew install openjdk
 brew install graphviz
