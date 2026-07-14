@@ -14,6 +14,8 @@
 	# gh auth git-credential はアクティブアカウントのトークンしか返さないため使わない。
 	# credential.username で指定したアカウントのトークンを gh auth token で明示的に取り出す。
 	# GUI アプリ (Obsidian 等) は launchd の既定 PATH で起動し gh を解決できないため PATH を補う。
+	# gh は mise 管理。実体の配置はツールごとに不揃いなので、安定した shims 経由で解決する。
+	# shims は mise へのシンボリックリンクなので /opt/homebrew/bin も併せて必要。
 	# 末尾の sh -c ... -- は git が付与する操作名 (get/store/erase) を吸収するため。
-	helper = !sh -c 'PATH=/opt/homebrew/bin:/usr/local/bin:$PATH gh auth token -u $(git config --get credential.https://github.com.username) | sed s/^/password=/' --
+	helper = !sh -c 'PATH=$HOME/.local/share/mise/shims:/opt/homebrew/bin:$PATH gh auth token -u $(git config --get credential.https://github.com.username) | sed s/^/password=/' --
 	username = versu

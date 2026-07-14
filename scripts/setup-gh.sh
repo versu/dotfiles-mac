@@ -3,13 +3,10 @@
 set -eu
 source "$(dirname "$0")/common.sh"
 
-### install GitHub CLI ###
-if ! command -v gh &> /dev/null; then
-    echo "Installing gh..."
-    brew install gh
-fi
-
 ### authenticate ###
+# gh は mise 管理。このスクリプトは mise activate されていない bash で走るため shims を通す。
+export PATH="$XDG_DATA_HOME/mise/shims:$PATH"
+
 # credential.username で指定したアカウントを認証対象とする。
 # gh auth status ではいずれかのアカウントが認証済みなら成功してしまうため、
 # gh auth token でアカウントを名指しして判定する。
