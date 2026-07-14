@@ -11,6 +11,11 @@ source "${ZINIT[HOME_DIR]}/bin/zinit.zsh"
 # path
 # ---------------------------------------------------------
 
+# mise が管理するツール（fzf, deno 等）は後続の設定から参照されるため、ここで PATH を通す。
+eval "$(mise activate zsh)"
+
+export PATH="$HOME/bin:$PATH"
+
 # ---------------------------------------------------------
 # homebrew をユーザーインストールした場合は、以下のコメントアウトを外す
 # homebrew をユーザーインストールした場合に、アプリケーションのインストールフォルダをユーザーディレクトリ配下に変更するための設定
@@ -40,7 +45,8 @@ zinit wait lucid blockf light-mode for \
 # fzf
 # ---------------------------------------------------------
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+# fzf は mise 管理。キーバインドと補完の統合スクリプトを fzf 本体から生成して読み込む。
+source <(fzf --zsh)
 
 # ---------------------------------------------------------
 # zsh fuzzy completion and utility plugin with Deno.
@@ -97,12 +103,6 @@ zinit light lsd-rs/lsd
 # bash base key bind
 bindkey \^U backward-kill-line
 
-
-# ---------------------------------------------------------
-# mise
-# ---------------------------------------------------------
-
-eval "$(mise activate zsh)"
 
 # ---------------------------------------------------------
 # home brew
