@@ -61,16 +61,46 @@ __zeno_atload() {
   # bindkey '^x' zeno-insert-snippet
   bindkey '^g' zeno-ghq-cd
 
-  # deno は deno.json が無いと cwd の tsconfig.json を設定として拾い、
-  # 非対応の compilerOptions を stderr に警告する。zinit のターボモードでは
-  # それがプロンプト描画後に流れ込み、表示が崩れる。出力を捨てて非同期実行する。
-  ( deno cache --quiet --unstable-byonm --no-lock --no-check -- "${ZENO_ROOT}/src/cli.ts" &> /dev/null &! )
+  # zeno のウィジェットはスニペット展開のたびに Deno と往復する。本家の実装はソケットが無いと
+  # その場でサーバの起動を最大5秒待ち、それでも駄目なら同期的な deno run にフォールバックする。
+  # これがキー入力のたびに走ると ZLE がブロックし、キャレットと入力文字が消えて入力できなくなる。
+  # サーバが応答しなければ出力なしで失敗を返し、呼び出し元のウィジェットを self-insert 等へ
+  # フォールバックさせる。応答しないソケットは残骸なので消し、次のプロンプトで起動し直させる。
+  zeno-call-client-and-fallback() {
+    if [[ -S $ZENO_SOCK ]]; then
+      zeno-client "$@" && return 0
+      rm -f -- "$ZENO_SOCK"
+    fi
+    return 1
+  }
+
+  # サーバの起動はプロンプト側で面倒を見る。初回は Deno が server.ts をコンパイルするため
+  # 数秒かかるので、キー入力を待たせないようバックグラウンドで行う。
+  __zeno_ensure_server() {
+    if [[ -S $ZENO_SOCK ]]; then
+      ZENO_SERVER_STARTING=0
+      return
+    fi
+    (( ${ZENO_SERVER_STARTING:-0} )) && return
+    typeset -g ZENO_SERVER_STARTING=1
+    ( zeno-start-server &> /dev/null ) &!
+  }
+
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd __zeno_ensure_server
+  __zeno_ensure_server
 }
 
 export ZENO_HOME="$XDG_CONFIG_HOME/zeno"
+# zeno-init は起動時に deno cache を同期実行する。コールドキャッシュだと数秒プロンプトが
+# 止まるため無効化し、キャッシュの生成はサーバ起動に任せる。
 export ZENO_DISABLE_EXECUTE_CACHE_COMMAND=1
+# zeno はエントリポイントを明示する必要がある。リポジトリ直下に .zsh が複数あり、zinit に
+# 選ばせると zeno-bootstrap.zsh を拾ってしまう。それは autoload の登録だけで zeno-init を
+# 呼ばないため、ソケットもキーバインドも有効にならない。
 zinit wait lucid light-mode for \
   atload'__zeno_atload' \
+  pick'zeno-plugin.zsh' \
   @'yuki-yano/zeno.zsh'
 
 export FZF_DEFAULT_OPTS='--reverse'
@@ -199,6 +229,9 @@ function zle-clipboard-copy {
 		local selected_text=${BUFFER[start+1,end]}
 		printf '%s' "$selected_text" | pbcopy
 		REGION_ACTIVE=0  # 選択を解除
+		# キーマップを戻さないと Backspace が shift-select::kill-region のままになり、
+		# コピー直後の Backspace で選択範囲が消えてしまう
+		zle -K main
 	else
 		# 未選択の場合 → プロセス中断
 		zle send-break
