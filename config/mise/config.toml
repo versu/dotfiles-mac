@@ -9,3 +9,5 @@ pnpm = "latest"
 bun = "latest"
 ghq = "latest"
 gh = "latest"
+# ブラウザ本体: Chromium は scripts/setup-playwright.sh、Chrome は setup-brew.sh で導入する
+"npm:playwright" = "latest"
