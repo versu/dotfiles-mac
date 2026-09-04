@@ -36,6 +36,7 @@
                     {
                         "_comment": "進む",
                         "description": "(finder) alt(option) + → => cmd + →",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -63,6 +64,7 @@
                     {
                         "_comment": "戻る",
                         "description": "(finder) alt(option) + ← => cmd + ←",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
