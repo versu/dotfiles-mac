@@ -16,6 +16,10 @@ eval "$(mise activate zsh)"
 
 export PATH="$HOME/bin:$PATH"
 
+# Claude Code はネイティブインストーラ管理（scripts/setup-claude-code.sh）で
+# ~/.local/bin に入る。mise の node バージョンに依存させないため個別に PATH を通す。
+export PATH="$HOME/.local/bin:$PATH"
+
 # ---------------------------------------------------------
 # homebrew をユーザーインストールした場合は、以下のコメントアウトを外す
 # homebrew をユーザーインストールした場合に、アプリケーションのインストールフォルダをユーザーディレクトリ配下に変更するための設定
