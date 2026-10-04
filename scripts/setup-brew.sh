@@ -26,6 +26,9 @@ brew install google-japanese-ime
 # キーマッピング
 brew install karabiner-elements
 
+# Karabiner では判別できない、フォーカス位置に応じたキー操作の変更
+brew install --cask hammerspoon
+
 # マウスとタッチパッドのスクロール方向をそれぞれ設定できるようにする
 brew install scroll-reverser
 

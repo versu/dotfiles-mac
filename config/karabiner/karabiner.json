@@ -214,6 +214,25 @@
                         ]
                     },
                     {
+                        "_comment": "名前の変更（return は Hammerspoon が「開く」に変えるため、テンキー側の enter を送る）",
+                        "description": "(finder) f2 => keypad enter",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.finder"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "f2" },
+                                "to": [{ "key_code": "keypad_enter" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "_comment": "タブ切替",
                         "description": "(chrome) cmd + (shift) + tab => control + (shift) + tab",
                         "manipulators": [

@@ -216,6 +216,31 @@
           ]
         }
       ]
+    },
+    {
+      "description": "(finder) f2 => keypad enter",
+      "_comment": "名前の変更（return は Hammerspoon が「開く」に変えるため、テンキー側の enter を送る）",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f2"
+          },
+          "to": [
+            {
+              "key_code": "keypad_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
