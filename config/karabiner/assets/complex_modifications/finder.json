@@ -102,6 +102,120 @@
           ]
         }
       ]
+    },
+    {
+      "description": "(finder) mouse button4 => alt(option) + ←",
+      "_comment": "戻る（Finder のメニューショートカットを alt + ← に変更している前提）",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button4"
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "(finder) mouse button5 => alt(option) + →",
+      "_comment": "進む（Finder のメニューショートカットを alt + → に変更している前提）",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button5"
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "(finder) cmd + n => 新規ファイル作成",
+      "_comment": "新規ファイル作成",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "\"$HOME/.config/karabiner/scripts/finder-new-file.sh\""
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "(finder) delete => cmd + backspace",
+      "_comment": "ゴミ箱に入れる",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "delete_forward"
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": [
+                "command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
