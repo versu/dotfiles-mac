@@ -56,6 +56,12 @@ brew install --cask fork
 # Postman
 brew install --cask postman
 
+# RDP クライアント（Windows へのリモートデスクトップ接続）
+brew install --cask windows-app
+
+# Cloudflare One Client（旧称 Cloudflare WARP。cask 名は旧称のまま）
+brew install --cask cloudflare-warp
+
 # Java(plantuml のために必要)
 brew install openjdk
 brew install graphviz
