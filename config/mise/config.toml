@@ -9,5 +9,7 @@ pnpm = "latest"
 bun = "latest"
 ghq = "latest"
 gh = "latest"
+# macOS プリインストールの /usr/bin/python3（Command Line Tools の 3.9）は古く pip も更新できないため、mise 管理の python を PATH で優先させる
+python = "latest"
 # ブラウザ本体: Chromium は scripts/setup-playwright.sh、Chrome は setup-brew.sh で導入する
 "npm:playwright" = "latest"
